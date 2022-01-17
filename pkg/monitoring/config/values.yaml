@@ -1,0 +1,17 @@
+#@data/values
+---
+prometheus:
+  replicas: 1
+  storage:
+    className: default
+    size: 10Gi
+grafana:
+  admin:
+    user: admin
+    password: admin
+  replicas: 1
+  storage:
+    className: default
+    size: 2Gi
+  ingress:
+    host: grafana.example.com

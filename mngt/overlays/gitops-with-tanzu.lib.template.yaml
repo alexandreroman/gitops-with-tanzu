@@ -1,0 +1,32 @@
+#@ load("@ytt:data", "data")
+
+#@ def gitops_with_tanzu_data():
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: gitops-with-tanzu
+  namespace: tkg-system
+spec:
+  serviceAccountName: tkg-addons-app-sa
+  fetch:
+  - git:
+      url: https://github.com/alexandreroman/gitops-with-tanzu-sample
+      ref: origin/main
+      subPath: #@ "env/INSERT-ENV-HERE/{}".format(data.values.CLUSTER_NAME)
+      secretRef:
+        name: gitops-with-tanzu-repo-secret
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitops-with-tanzu-repo-secret
+  namespace: tkg-system
+stringData:
+  username: github
+  password: INSERT-GITHUB-TOKEN-HERE
+#@ end

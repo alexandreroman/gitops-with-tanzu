@@ -1,0 +1,20 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+
+#@ def config():
+prometheus:
+  deployment:
+    replicas: #@ data.values.prometheus.replicas
+  pvc:
+    storageClassName: #@ data.values.prometheus.storage.className
+    storage: #@ data.values.prometheus.storage.size
+alertmanager:
+  pvc:
+    storageClassName: #@ data.values.prometheus.storage.className
+#@ end
+
+#@overlay/match by=overlay.subset({"metadata":{"name": "prometheus-pkg-values"}})
+---
+stringData:
+  values.yml: #@ yaml.encode(config())

@@ -1,0 +1,16 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: grafana
+  annotations:
+    kapp.k14s.io/change-group: "gitops-with-tanzu/grafana"
+spec:
+  packageRef:
+    refName: grafana.tanzu.vmware.com
+    versionSelection:
+      constraints: ">0.0.0"
+      prereleases: {}
+  serviceAccountName: monitoring-default-sa
+  values:
+  - secretRef:
+      name: grafana-pkg-values

@@ -1,0 +1,7 @@
+#@data/values
+---
+contour:
+  replicas: 1
+metallb:
+  addresses:
+  - 192.168.10.50-192.168.10.99

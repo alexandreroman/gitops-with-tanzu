@@ -1,0 +1,16 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: prometheus
+  annotations:
+    kapp.k14s.io/change-group: "gitops-with-tanzu/prometheus"
+spec:
+  packageRef:
+    refName: prometheus.tanzu.vmware.com
+    versionSelection:
+      constraints: ">0.0.0"
+      prereleases: {}
+  serviceAccountName: monitoring-default-sa
+  values:
+  - secretRef:
+      name: prometheus-pkg-values

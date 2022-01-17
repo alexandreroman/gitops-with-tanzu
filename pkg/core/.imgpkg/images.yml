@@ -1,0 +1,11 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: ghcr.io/alexandreroman/tanzu-extra-repo:stable
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: stable
+          url: ghcr.io/alexandreroman/tanzu-extra-repo:stable
+  image: ghcr.io/alexandreroman/tanzu-extra-repo@sha256:a4bba3457b0a57636855b621d990ef55c259795ea5a2b8a4bc1f614ab2ac1042
+kind: ImagesLock

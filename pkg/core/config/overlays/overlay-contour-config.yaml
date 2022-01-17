@@ -1,0 +1,16 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+
+#@ def config():
+contour:
+  replicas: #@ data.values.contour.replicas
+envoy:
+  service:
+    type: LoadBalancer
+#@ end
+
+#@overlay/match by=overlay.subset({"metadata":{"name": "contour-pkg-values"}})
+---
+stringData:
+  values.yml: #@ yaml.encode(config())

@@ -1,0 +1,13 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+
+#@ def config():
+metallb:
+  addresses: #@ data.values.metallb.addresses
+#@ end
+
+#@overlay/match by=overlay.subset({"metadata":{"name": "metallb-pkg-values"}})
+---
+stringData:
+  values.yml: #@ yaml.encode(config())

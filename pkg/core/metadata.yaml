@@ -1,0 +1,12 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  name: core.gitops-with-tanzu.github.com
+spec:
+  displayName: GitOps with Tanzu - Core
+  longDescription: Core packages for Tanzu clusters
+  shortDescription: Core packages for Tanzu clusters
+  providerName: GitOps with Tanzu
+  maintainers:
+  - name: Alexandre Roman
+  supportDescription: "Go to github.com/alexandreroman/gitops-with-tanzu for documentation"

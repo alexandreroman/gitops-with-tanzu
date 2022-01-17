@@ -1,0 +1,22 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: core.gitops-with-tanzu.github.com.1.0.0
+spec:
+  refName: core.gitops-with-tanzu.github.com
+  version: 1.0.0
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: ghcr.io/alexandreroman/gitops-with-tanzu-core:stable
+      template:
+      - ytt:
+          paths:
+          - config/
+      - kbld:
+          paths:
+          - '-'
+          - .imgpkg/images.yml
+      deploy:
+      - kapp: {}

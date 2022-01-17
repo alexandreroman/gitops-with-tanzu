@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prometheus-pkg-values
+  annotations:
+    kapp.k14s.io/change-group: "gitops-with-tanzu/prometheus"
+type: Opaque
+stringData:
+  values.yml:
