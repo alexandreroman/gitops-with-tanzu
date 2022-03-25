@@ -3,6 +3,7 @@ kind: PackageInstall
 metadata:
   name: metallb
   annotations:
+    packaging.carvel.dev/downgradable: ""
     kapp.k14s.io/change-group: "gitops-with-tanzu/metallb"
     kapp.k14s.io/change-rule.create-order: "upsert after upserting gitops-with-tanzu/tanzu-extra-repo"
     kapp.k14s.io/change-rule.delete-order: "delete before deleting gitops-with-tanzu/tanzu-extra-repo"
