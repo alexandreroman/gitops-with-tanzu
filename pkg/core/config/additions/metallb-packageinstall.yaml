@@ -1,3 +1,6 @@
+#@ load("@ytt:data", "data")
+
+#@ if len(data.values.metallb.addresses) > 0:
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
@@ -17,3 +20,4 @@ spec:
   values:
   - secretRef:
       name: metallb-pkg-values
+#@ end

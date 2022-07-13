@@ -1,3 +1,6 @@
+#@ load("@ytt:data", "data")
+
+#@ if len(data.values.metallb.addresses) > 0:
 apiVersion: v1
 kind: Secret
 metadata:
@@ -9,3 +12,4 @@ metadata:
 type: Opaque
 stringData:
   values.yml:
+#@ end

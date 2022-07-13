@@ -7,7 +7,9 @@ metallb:
   addresses: #@ data.values.metallb.addresses
 #@ end
 
+#@ if len(data.values.metallb.addresses) > 0:
 #@overlay/match by=overlay.subset({"metadata":{"name": "metallb-pkg-values"}})
 ---
 stringData:
   values.yml: #@ yaml.encode(config())
+#@ end
