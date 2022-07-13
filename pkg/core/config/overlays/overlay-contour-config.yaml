@@ -3,11 +3,17 @@
 #@ load("@ytt:yaml", "yaml")
 
 #@ def config():
+infrastructure_provider: #@ data.values.contour.infrastructure
 contour:
   replicas: #@ data.values.contour.replicas
 envoy:
   service:
     type: LoadBalancer
+#@ if data.values.contour.infrastructure == "aws":
+    aws:
+      LBType: classic
+    externalTrafficPolicy: Cluster
+#@ end
 #@ end
 
 #@overlay/match by=overlay.subset({"metadata":{"name": "contour-pkg-values"}})

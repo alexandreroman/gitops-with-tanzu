@@ -2,5 +2,6 @@
 ---
 contour:
   replicas: 1
+  infrastructure: vsphere
 metallb:
   addresses: []
